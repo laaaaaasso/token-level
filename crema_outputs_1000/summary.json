@@ -1,0 +1,20 @@
+{
+  "total_samples": 1000,
+  "feature_status_counts": {
+    "ok": 1000
+  },
+  "task_significant_feature_count": {
+    "gender": 2,
+    "age": 1,
+    "emotion": 18
+  },
+  "sig_score_distribution": {
+    "0": 7,
+    "1": 107,
+    "2": 41,
+    "3": 845
+  },
+  "sig_score_eq_3_count": 845,
+  "sig_score_ge_2_count": 886,
+  "high_score_threshold": 2
+}
