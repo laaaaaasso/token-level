@@ -4,7 +4,7 @@
 
 核心统计逻辑：
 1. 先在数据集层面做组间检验（而非逐条样本检验）。
-2. 再判断单条样本是否落入其标签组的典型区间（`mean ± 2*std`）。
+2. 再判断单条样本是否落入其标签组的典型区间（默认 `mean ± 1.5*std`，也支持 IQR）。
 3. 最终映射为 `gender_sig / age_sig / emotion_sig` 的 `0/1` 标记。
 
 ## 项目结构
@@ -45,6 +45,50 @@ pip install -r requirements.txt
 - `age_label`（支持映射到 `young/old`）
 - `emotion_label`（`neutral/happy/sad/angry/fear/surprised`）
 
+## Phase 0（数据准备与分层）
+
+主入口：
+
+```bash
+python phase0_main.py --train-manifest crema_data_1000/metadata.csv --ref-manifest crema_outputs_1000_tight_std15/high_score_audios.csv --outdir phase0_outputs
+```
+
+输出：
+
+- `phase0_manifest_all.jsonl`
+- `phase0_manifest_train.jsonl`
+- `phase0_manifest_ref.jsonl`
+- `phase0_failures.jsonl`
+- `phase0_summary.json`
+
+## Phase 1（Reference Model 训练）
+
+主入口：
+
+```bash
+python phase1_main.py --ref-manifest phase0_outputs/phase0_manifest_ref.jsonl --output-dir phase1_outputs
+```
+
+说明：上面命令默认只做 `D_ref` 数据准备与训练命令生成（不启动训练）。
+
+在有 GPU 的机器上启动 CosyVoice2 LLM 训练：
+
+```bash
+python phase1_main.py --ref-manifest phase0_outputs/phase0_manifest_ref.jsonl --output-dir phase1_outputs --qwen-pretrain-path /path/to/CosyVoice2-0.5B/CosyVoice-BlankEN --init-checkpoint /path/to/CosyVoice2-0.5B/llm.pt --num-gpus 1 --run-training
+```
+
+主要输出：
+
+- `phase1_ref_train.data.list`
+- `phase1_ref_cv.data.list`
+- `phase1_cosyvoice2_ref.yaml`
+- `phase1_train_command.txt`
+- `phase1_train_summary.json`
+- `checkpoints/*.pt`（训练后）
+- `rm_last.pt`（训练成功后导出）
+- `rm_best.pt`（训练成功后导出）
+- `rm_frozen.pt`（训练成功后导出，供后续 Phase 2 读取）
+
 ## 运行方式
 
 ```bash
@@ -54,6 +98,9 @@ python main.py --metadata metadata.csv --outdir outputs
 可选参数：
 - `--sample-rate`：默认 `16000`
 - `--alpha`：显著性阈值，默认 `0.05`
+- `--interval-method`：区间方法，`std` 或 `iqr`，默认 `std`
+- `--std-multiplier`：当 `interval-method=std` 时生效，默认 `1.5`
+- `--iqr-multiplier`：当 `interval-method=iqr` 时生效，默认 `1.5`
 - `--age-map-json`：自定义年龄映射 JSON
 - `--verbose`：输出 debug 日志
 
@@ -83,6 +130,12 @@ python examples/prepare_crema_d_hf_sample.py --outdir crema_data_1000 --n-sample
 
 ```bash
 python main.py --metadata crema_data_1000/metadata.csv --outdir crema_outputs_1000
+```
+
+如果想进一步收紧样本筛选，可使用更严格区间参数，例如：
+
+```bash
+python main.py --metadata crema_data_1000/metadata.csv --outdir crema_outputs_1000_tight --interval-method std --std-multiplier 1.5
 ```
 
 ## 输出文件

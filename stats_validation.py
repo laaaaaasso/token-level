@@ -69,9 +69,15 @@ def _build_group_intervals(
     df: pd.DataFrame,
     label_col: str,
     features: List[str],
-    std_multiplier: float = 2.0,
+    interval_method: str = "std",
+    std_multiplier: float = 1.5,
+    iqr_multiplier: float = 1.5,
 ) -> Dict[str, Dict[str, Dict[str, float]]]:
-    """Build mean±k*std intervals for each group and feature."""
+    """Build group-specific intervals for each feature."""
+    method = interval_method.lower().strip()
+    if method not in {"std", "iqr"}:
+        raise ValueError(f"Unsupported interval_method: {interval_method}")
+
     cache: Dict[str, Dict[str, Dict[str, float]]] = {}
     for label, grp in df.groupby(label_col, dropna=True):
         label_cache: Dict[str, Dict[str, float]] = {}
@@ -82,26 +88,50 @@ def _build_group_intervals(
                 label_cache[feat] = {
                     "mean": np.nan,
                     "std": np.nan,
+                    "q1": np.nan,
+                    "q3": np.nan,
+                    "iqr": np.nan,
                     "lower": np.nan,
                     "upper": np.nan,
                     "n": 0.0,
+                    "interval_method": method,
                 }
                 continue
 
             mean = float(np.mean(vals))
             std = float(np.std(vals))
+            q1 = float(np.quantile(vals, 0.25))
+            q3 = float(np.quantile(vals, 0.75))
+            iqr = float(q3 - q1)
+            if method == "std":
+                lower = mean - std_multiplier * std
+                upper = mean + std_multiplier * std
+            else:
+                lower = q1 - iqr_multiplier * iqr
+                upper = q3 + iqr_multiplier * iqr
+
             label_cache[feat] = {
                 "mean": mean,
                 "std": std,
-                "lower": mean - std_multiplier * std,
-                "upper": mean + std_multiplier * std,
+                "q1": q1,
+                "q3": q3,
+                "iqr": iqr,
+                "lower": float(lower),
+                "upper": float(upper),
                 "n": float(vals.size),
+                "interval_method": method,
             }
         cache[str(label)] = label_cache
     return cache
 
 
-def validate_gender(feature_df: pd.DataFrame, alpha: float = 0.05) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+def validate_gender(
+    feature_df: pd.DataFrame,
+    alpha: float = 0.05,
+    interval_method: str = "std",
+    std_multiplier: float = 1.5,
+    iqr_multiplier: float = 1.5,
+) -> Tuple[pd.DataFrame, Dict[str, Any]]:
     """Validate gender labels via two-group tests."""
     features = ["f0_mean", "spec_centroid_mean"]
     df = feature_df[feature_df["gender_label_norm"].isin(["male", "female"])].copy()
@@ -111,7 +141,17 @@ def validate_gender(feature_df: pd.DataFrame, alpha: float = 0.05) -> Tuple[pd.D
         "primary_feature": "f0_mean",
         "features": features,
         "tests": {},
-        "intervals": _build_group_intervals(df, "gender_label_norm", features),
+        "intervals": _build_group_intervals(
+            df,
+            "gender_label_norm",
+            features,
+            interval_method=interval_method,
+            std_multiplier=std_multiplier,
+            iqr_multiplier=iqr_multiplier,
+        ),
+        "interval_method": interval_method,
+        "std_multiplier": std_multiplier,
+        "iqr_multiplier": iqr_multiplier,
     }
 
     male = df[df["gender_label_norm"] == "male"]
@@ -135,7 +175,13 @@ def validate_gender(feature_df: pd.DataFrame, alpha: float = 0.05) -> Tuple[pd.D
     return pd.DataFrame(rows), cache
 
 
-def validate_age(feature_df: pd.DataFrame, alpha: float = 0.05) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+def validate_age(
+    feature_df: pd.DataFrame,
+    alpha: float = 0.05,
+    interval_method: str = "std",
+    std_multiplier: float = 1.5,
+    iqr_multiplier: float = 1.5,
+) -> Tuple[pd.DataFrame, Dict[str, Any]]:
     """Validate age labels (young vs old) via two-group tests."""
     features = ["f0_mean", "pause_ratio"]
     df = feature_df[feature_df["age_label_bin"].isin(["young", "old"])].copy()
@@ -145,7 +191,17 @@ def validate_age(feature_df: pd.DataFrame, alpha: float = 0.05) -> Tuple[pd.Data
         "primary_features": features,
         "features": features,
         "tests": {},
-        "intervals": _build_group_intervals(df, "age_label_bin", features),
+        "intervals": _build_group_intervals(
+            df,
+            "age_label_bin",
+            features,
+            interval_method=interval_method,
+            std_multiplier=std_multiplier,
+            iqr_multiplier=iqr_multiplier,
+        ),
+        "interval_method": interval_method,
+        "std_multiplier": std_multiplier,
+        "iqr_multiplier": iqr_multiplier,
     }
 
     young = df[df["age_label_bin"] == "young"]
@@ -169,14 +225,27 @@ def validate_age(feature_df: pd.DataFrame, alpha: float = 0.05) -> Tuple[pd.Data
     return pd.DataFrame(rows), cache
 
 
-def validate_emotion(feature_df: pd.DataFrame, alpha: float = 0.05) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+def validate_emotion(
+    feature_df: pd.DataFrame,
+    alpha: float = 0.05,
+    interval_method: str = "std",
+    std_multiplier: float = 1.5,
+    iqr_multiplier: float = 1.5,
+) -> Tuple[pd.DataFrame, Dict[str, Any]]:
     """Validate emotion labels using one-vs-rest tests."""
     features = ["f0_range", "energy_range", "spec_flux_mean", "mfcc_delta_std"]
     valid_emotions = {"neutral", "happy", "sad", "angry", "fear", "surprised"}
     df = feature_df[feature_df["emotion_label_norm"].isin(valid_emotions)].copy()
 
     rows: List[Dict[str, Any]] = []
-    intervals = _build_group_intervals(df, "emotion_label_norm", features)
+    intervals = _build_group_intervals(
+        df,
+        "emotion_label_norm",
+        features,
+        interval_method=interval_method,
+        std_multiplier=std_multiplier,
+        iqr_multiplier=iqr_multiplier,
+    )
     per_emotion: Dict[str, Any] = {}
 
     for emo in sorted(df["emotion_label_norm"].dropna().unique().tolist()):
@@ -201,15 +270,45 @@ def validate_emotion(feature_df: pd.DataFrame, alpha: float = 0.05) -> Tuple[pd.
             )
         per_emotion[emo] = {"tests": tests, "intervals": intervals.get(emo, {})}
 
-    cache: Dict[str, Any] = {"features": features, "per_emotion": per_emotion}
+    cache: Dict[str, Any] = {
+        "features": features,
+        "per_emotion": per_emotion,
+        "interval_method": interval_method,
+        "std_multiplier": std_multiplier,
+        "iqr_multiplier": iqr_multiplier,
+    }
     return pd.DataFrame(rows), cache
 
 
-def run_all_validations(feature_df: pd.DataFrame, alpha: float = 0.05) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+def run_all_validations(
+    feature_df: pd.DataFrame,
+    alpha: float = 0.05,
+    interval_method: str = "std",
+    std_multiplier: float = 1.5,
+    iqr_multiplier: float = 1.5,
+) -> Tuple[pd.DataFrame, Dict[str, Any]]:
     """Run gender/age/emotion group-level validations."""
-    gender_df, gender_cache = validate_gender(feature_df, alpha=alpha)
-    age_df, age_cache = validate_age(feature_df, alpha=alpha)
-    emotion_df, emotion_cache = validate_emotion(feature_df, alpha=alpha)
+    gender_df, gender_cache = validate_gender(
+        feature_df,
+        alpha=alpha,
+        interval_method=interval_method,
+        std_multiplier=std_multiplier,
+        iqr_multiplier=iqr_multiplier,
+    )
+    age_df, age_cache = validate_age(
+        feature_df,
+        alpha=alpha,
+        interval_method=interval_method,
+        std_multiplier=std_multiplier,
+        iqr_multiplier=iqr_multiplier,
+    )
+    emotion_df, emotion_cache = validate_emotion(
+        feature_df,
+        alpha=alpha,
+        interval_method=interval_method,
+        std_multiplier=std_multiplier,
+        iqr_multiplier=iqr_multiplier,
+    )
     group_test_results = pd.concat([gender_df, age_df, emotion_df], ignore_index=True)
     stats_cache = {
         "gender": gender_cache,

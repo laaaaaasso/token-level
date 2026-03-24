@@ -105,6 +105,7 @@ def save_results(
     group_test_df: pd.DataFrame,
     ranked_df: pd.DataFrame,
     high_df: pd.DataFrame,
+    interval_config: Dict[str, Any],
 ) -> Dict[str, Any]:
     """Save CSV, JSON and PNG outputs required by the task."""
     features_path = outdir / "features.csv"
@@ -139,6 +140,9 @@ def save_results(
         "sig_score_eq_3_count": int((ranked_df["sig_score"] == 3).sum()),
         "sig_score_ge_2_count": int((ranked_df["sig_score"] >= 2).sum()),
         "high_score_threshold": 2,
+        "interval_method": interval_config["interval_method"],
+        "std_multiplier": interval_config["std_multiplier"],
+        "iqr_multiplier": interval_config["iqr_multiplier"],
     }
     save_json(summary_path, summary)
 
@@ -179,6 +183,25 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--sample-rate", type=int, default=16000, help="Audio load sample rate.")
     parser.add_argument("--top-db", type=float, default=30.0, help="Silence threshold parameter.")
     parser.add_argument("--alpha", type=float, default=0.05, help="Significance level.")
+    parser.add_argument(
+        "--interval-method",
+        type=str,
+        default="std",
+        choices=["std", "iqr"],
+        help="Group interval method used by per-sample scoring.",
+    )
+    parser.add_argument(
+        "--std-multiplier",
+        type=float,
+        default=1.5,
+        help="Interval width for std method: mean ± k*std.",
+    )
+    parser.add_argument(
+        "--iqr-multiplier",
+        type=float,
+        default=1.5,
+        help="Interval width for iqr method: [Q1-k*IQR, Q3+k*IQR].",
+    )
     parser.add_argument("--age-map-json", default=None, help="Optional custom age mapping JSON file.")
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging.")
     return parser
@@ -203,7 +226,18 @@ def main() -> None:
 
     full_df = pd.concat([metadata_df.reset_index(drop=True), feature_export], axis=1)
     LOGGER.info("Running group-level statistical validations...")
-    group_test_df, stats_cache = run_all_validations(full_df, alpha=args.alpha)
+    interval_config = {
+        "interval_method": args.interval_method,
+        "std_multiplier": args.std_multiplier,
+        "iqr_multiplier": args.iqr_multiplier,
+    }
+    group_test_df, stats_cache = run_all_validations(
+        full_df,
+        alpha=args.alpha,
+        interval_method=args.interval_method,
+        std_multiplier=args.std_multiplier,
+        iqr_multiplier=args.iqr_multiplier,
+    )
 
     LOGGER.info("Assigning per-sample significance flags...")
     scored_df = assign_significance_flags(full_df, stats_cache)
@@ -216,6 +250,7 @@ def main() -> None:
         group_test_df=group_test_df,
         ranked_df=ranked_df,
         high_df=high_df,
+        interval_config=interval_config,
     )
 
     LOGGER.info("Pipeline done. Outputs saved to %s", outdir)
