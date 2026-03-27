@@ -19,3 +19,26 @@ Thumbs.db
 
 # Temp/log
 *.log
+
+# Large data & output directories (keep locally, not in repo)
+crema_data_1000
+crema_outputs_1000
+crema_outputs_1000_tight_std15
+data
+phase0_outputs
+phase1_outputs/
+phase2_outputs/
+phase3_outputs/
+pretrained_models/
+
+# Model files
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+
+# Audio files
+*.wav
+*.mp3
+*.flac
