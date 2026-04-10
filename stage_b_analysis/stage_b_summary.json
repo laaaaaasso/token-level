@@ -1,0 +1,46 @@
+{
+  "full_training": {
+    "final_train_loss": 1.7870450019836426,
+    "final_cv_loss": 4.084961891174316,
+    "timing": {
+      "total_wall_seconds": 117.80022668838501,
+      "total_steps": 98,
+      "seconds_per_step": 1.2020431294733165,
+      "first_step": 1,
+      "last_step": 99
+    }
+  },
+  "selective_training": {
+    "final_train_loss": 1.7610186338424685,
+    "final_cv_loss": 4.1146745681762695,
+    "timing": {
+      "total_wall_seconds": 137.6328845024109,
+      "total_steps": 98,
+      "seconds_per_step": 1.4044171888001111,
+      "first_step": 1,
+      "last_step": 99
+    }
+  },
+  "cv_loss_by_step": {
+    "steps": [
+      34,
+      67,
+      100
+    ],
+    "full": [
+      4.322690486907959,
+      4.216919898986816,
+      4.084961891174316
+    ],
+    "selective": [
+      4.385239124298096,
+      4.268586158752441,
+      4.1146745681762695
+    ]
+  },
+  "conclusion": {
+    "selective_train_better": true,
+    "full_cv_better": true,
+    "full_faster_per_step": true
+  }
+}

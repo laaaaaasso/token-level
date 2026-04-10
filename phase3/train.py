@@ -47,6 +47,8 @@ def get_args():
     parser.add_argument('--checkpoint', default=None, help='init checkpoint (.pt)')
     parser.add_argument('--mask_path', required=True,
                         help='Phase 2 token_scores.pt with per-sample masks')
+    parser.add_argument('--disable_mask', action='store_true', default=False,
+                        help='If set, ignore Phase 2 masks and train on all speech tokens')
     parser.add_argument('--model_dir', required=True, help='save model dir')
     parser.add_argument('--tensorboard_dir', default='tensorboard')
     parser.add_argument('--ddp.dist_backend', dest='dist_backend',
@@ -139,7 +141,10 @@ def create_selective_forward(mask_dict):
 
         # 6. Look up Phase 2 masks for this batch
         utts = batch.get('utts', [])
-        speech_masks = [mask_dict.get(utt) for utt in utts]
+        if mask_dict is None:
+            speech_masks = None
+        else:
+            speech_masks = [mask_dict.get(utt) for utt in utts]
 
         # 7. Selective loss
         loss, n_selected = compute_selective_slm_loss(logits, lm_target, speech_masks)
@@ -203,13 +208,17 @@ def main():
     else:
         logging.warning("No checkpoint loaded (path: %s)", args.checkpoint)
 
-    # ── Load Phase 2 masks ──
-    mask_dict = load_token_masks(args.mask_path)
+    # ── Load Phase 2 masks & patch forward ──
+    if args.disable_mask:
+        mask_dict = None
+        logging.info("disable_mask=True: using ALL speech tokens for loss (full training)")
+    else:
+        mask_dict = load_token_masks(args.mask_path)
 
-    # ── Patch model forward with selective loss ──
     model.forward = types.MethodType(
         create_selective_forward(mask_dict), model)
-    logging.info("Patched model.forward with selective SLM loss")
+    logging.info("Patched model.forward with selective SLM loss (mask_dict=%s)",
+                 "None (full)" if mask_dict is None else "loaded")
 
     # ── Wrap with DDP ──
     model = wrap_cuda_model(args, model)

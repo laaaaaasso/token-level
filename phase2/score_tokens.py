@@ -7,7 +7,7 @@ computes per-speech-token excess loss, generates top-k% mask, saves to disk.
 Usage:
     python -m phase2.score_tokens \
         --train-data-list phase1_outputs/data/train.data.list \
-        --target-ckpt phase1_outputs/rm/rm_frozen.pt \
+        --target-ckpt pretrained_models/CosyVoice2-0.5B/llm.pt \
         --ref-ckpt phase1_outputs/rm/rm_frozen.pt \
         --config phase1_outputs/phase1_cosyvoice2.yaml \
         --qwen-pretrain-path pretrained_models/CosyVoice2-0.5B/CosyVoice-BlankEN \

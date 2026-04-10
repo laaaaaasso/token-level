@@ -29,6 +29,8 @@ phase0_outputs
 phase1_outputs/
 phase2_outputs/
 phase3_outputs/
+phase1_random_ref_outputs/
+phase2_random_ref_outputs/
 pretrained_models/
 
 # Model files
