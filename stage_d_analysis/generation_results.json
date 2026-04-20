@@ -1,0 +1,552 @@
+{
+  "pretrained": [
+    {
+      "label": "IEO_angry_1008",
+      "text": "It's eleven o'clock.",
+      "emotion": "angry",
+      "duration": 0.96,
+      "gen_time": 5.490942478179932,
+      "rtf": 5.7197317481040955,
+      "status": "ok"
+    },
+    {
+      "label": "IEO_happy_1017",
+      "text": "It's eleven o'clock.",
+      "emotion": "happy",
+      "duration": 0.88,
+      "gen_time": 2.197662353515625,
+      "rtf": 2.497343583540483,
+      "status": "ok"
+    },
+    {
+      "label": "IEO_sad_1046",
+      "text": "It's eleven o'clock.",
+      "emotion": "sad",
+      "duration": 0.88,
+      "gen_time": 2.0550179481506348,
+      "rtf": 2.335247668352994,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_angry_1058",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "angry",
+      "duration": 1.44,
+      "gen_time": 2.427189826965332,
+      "rtf": 1.6855484909481473,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_happy_1074",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "happy",
+      "duration": 2.12,
+      "gen_time": 2.6608057022094727,
+      "rtf": 1.2550970293440908,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_neutral_1055",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "neutral",
+      "duration": 1.28,
+      "gen_time": 2.397348642349243,
+      "rtf": 1.8729286268353462,
+      "status": "ok"
+    },
+    {
+      "label": "DFA_angry_1065",
+      "text": "Don't forget a jacket.",
+      "emotion": "angry",
+      "duration": 1.2,
+      "gen_time": 1.2160470485687256,
+      "rtf": 1.013372540473938,
+      "status": "ok"
+    },
+    {
+      "label": "DFA_sad_1049",
+      "text": "Don't forget a jacket.",
+      "emotion": "sad",
+      "duration": 1.08,
+      "gen_time": 2.3110694885253906,
+      "rtf": 2.1398791560420283,
+      "status": "ok"
+    },
+    {
+      "label": "ITH_happy_1037",
+      "text": "I think I have a doctor's appointment.",
+      "emotion": "happy",
+      "duration": 2.36,
+      "gen_time": 2.842045307159424,
+      "rtf": 1.2042564860845018,
+      "status": "ok"
+    },
+    {
+      "label": "ITH_neutral_1036",
+      "text": "I think I have a doctor's appointment.",
+      "emotion": "neutral",
+      "duration": 1.72,
+      "gen_time": 2.582568883895874,
+      "rtf": 1.501493537148764,
+      "status": "ok"
+    },
+    {
+      "label": "TIE_angry_1008",
+      "text": "That is exactly what happened.",
+      "emotion": "angry",
+      "duration": 1.52,
+      "gen_time": 2.7329931259155273,
+      "rtf": 1.7980217933654785,
+      "status": "ok"
+    },
+    {
+      "label": "TIE_sad_1082",
+      "text": "That is exactly what happened.",
+      "emotion": "sad",
+      "duration": 1.68,
+      "gen_time": 2.532460927963257,
+      "rtf": 1.5074172190257482,
+      "status": "ok"
+    }
+  ],
+  "selective": [
+    {
+      "label": "IEO_angry_1008",
+      "text": "It's eleven o'clock.",
+      "emotion": "angry",
+      "duration": 0.88,
+      "gen_time": 1.0252535343170166,
+      "rtf": 1.1650608344511553,
+      "status": "ok"
+    },
+    {
+      "label": "IEO_happy_1017",
+      "text": "It's eleven o'clock.",
+      "emotion": "happy",
+      "duration": 0.8,
+      "gen_time": 0.9863283634185791,
+      "rtf": 1.2329104542732239,
+      "status": "ok"
+    },
+    {
+      "label": "IEO_sad_1046",
+      "text": "It's eleven o'clock.",
+      "emotion": "sad",
+      "duration": 1.08,
+      "gen_time": 0.9805879592895508,
+      "rtf": 0.9079518141569914,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_angry_1058",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "angry",
+      "duration": 2.4,
+      "gen_time": 1.5634503364562988,
+      "rtf": 0.6514376401901245,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_happy_1074",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "happy",
+      "duration": 1.0,
+      "gen_time": 1.0318872928619385,
+      "rtf": 1.0318872928619385,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_neutral_1055",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "neutral",
+      "duration": 2.56,
+      "gen_time": 1.6640777587890625,
+      "rtf": 0.6500303745269775,
+      "status": "ok"
+    },
+    {
+      "label": "DFA_angry_1065",
+      "text": "Don't forget a jacket.",
+      "emotion": "angry",
+      "duration": 0.96,
+      "gen_time": 0.8977952003479004,
+      "rtf": 0.9352033336957296,
+      "status": "ok"
+    },
+    {
+      "label": "DFA_sad_1049",
+      "text": "Don't forget a jacket.",
+      "emotion": "sad",
+      "duration": 1.0,
+      "gen_time": 0.9506652355194092,
+      "rtf": 0.9506652355194092,
+      "status": "ok"
+    },
+    {
+      "label": "ITH_happy_1037",
+      "text": "I think I have a doctor's appointment.",
+      "emotion": "happy",
+      "duration": 1.76,
+      "gen_time": 1.365666151046753,
+      "rtf": 0.7759466767311096,
+      "status": "ok"
+    },
+    {
+      "label": "ITH_neutral_1036",
+      "text": "I think I have a doctor's appointment.",
+      "emotion": "neutral",
+      "duration": 1.6,
+      "gen_time": 1.2786643505096436,
+      "rtf": 0.7991652190685272,
+      "status": "ok"
+    },
+    {
+      "label": "TIE_angry_1008",
+      "text": "That is exactly what happened.",
+      "emotion": "angry",
+      "duration": 2.32,
+      "gen_time": 1.6312060356140137,
+      "rtf": 0.7031060498336267,
+      "status": "ok"
+    },
+    {
+      "label": "TIE_sad_1082",
+      "text": "That is exactly what happened.",
+      "emotion": "sad",
+      "duration": 1.32,
+      "gen_time": 1.2340707778930664,
+      "rtf": 0.9349021044644442,
+      "status": "ok"
+    }
+  ],
+  "full_baseline": [
+    {
+      "label": "IEO_angry_1008",
+      "text": "It's eleven o'clock.",
+      "emotion": "angry",
+      "duration": 0.96,
+      "gen_time": 0.9302940368652344,
+      "rtf": 0.9690562884012859,
+      "status": "ok"
+    },
+    {
+      "label": "IEO_happy_1017",
+      "text": "It's eleven o'clock.",
+      "emotion": "happy",
+      "duration": 1.08,
+      "gen_time": 0.97379469871521,
+      "rtf": 0.9016617580696388,
+      "status": "ok"
+    },
+    {
+      "label": "IEO_sad_1046",
+      "text": "It's eleven o'clock.",
+      "emotion": "sad",
+      "duration": 1.0,
+      "gen_time": 0.9358084201812744,
+      "rtf": 0.9358084201812744,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_angry_1058",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "angry",
+      "duration": 1.32,
+      "gen_time": 1.0528595447540283,
+      "rtf": 0.7976208672379002,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_happy_1074",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "happy",
+      "duration": 2.12,
+      "gen_time": 1.3725130558013916,
+      "rtf": 0.6474118187742413,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_neutral_1055",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "neutral",
+      "duration": 1.52,
+      "gen_time": 1.1395680904388428,
+      "rtf": 0.7497158489729229,
+      "status": "ok"
+    },
+    {
+      "label": "DFA_angry_1065",
+      "text": "Don't forget a jacket.",
+      "emotion": "angry",
+      "duration": 1.0,
+      "gen_time": 0.9353761672973633,
+      "rtf": 0.9353761672973633,
+      "status": "ok"
+    },
+    {
+      "label": "DFA_sad_1049",
+      "text": "Don't forget a jacket.",
+      "emotion": "sad",
+      "duration": 1.0,
+      "gen_time": 0.9111902713775635,
+      "rtf": 0.9111902713775635,
+      "status": "ok"
+    },
+    {
+      "label": "ITH_happy_1037",
+      "text": "I think I have a doctor's appointment.",
+      "emotion": "happy",
+      "duration": 1.88,
+      "gen_time": 1.410081386566162,
+      "rtf": 0.750043290726682,
+      "status": "ok"
+    },
+    {
+      "label": "ITH_neutral_1036",
+      "text": "I think I have a doctor's appointment.",
+      "emotion": "neutral",
+      "duration": 2.4,
+      "gen_time": 1.495260238647461,
+      "rtf": 0.6230250994364421,
+      "status": "ok"
+    },
+    {
+      "label": "TIE_angry_1008",
+      "text": "That is exactly what happened.",
+      "emotion": "angry",
+      "duration": 1.48,
+      "gen_time": 1.346221685409546,
+      "rtf": 0.9096092468983419,
+      "status": "ok"
+    },
+    {
+      "label": "TIE_sad_1082",
+      "text": "That is exactly what happened.",
+      "emotion": "sad",
+      "duration": 1.36,
+      "gen_time": 1.207094669342041,
+      "rtf": 0.8875696098103242,
+      "status": "ok"
+    }
+  ],
+  "random_mask": [
+    {
+      "label": "IEO_angry_1008",
+      "text": "It's eleven o'clock.",
+      "emotion": "angry",
+      "duration": 0.88,
+      "gen_time": 0.9490501880645752,
+      "rtf": 1.0784661228006536,
+      "status": "ok"
+    },
+    {
+      "label": "IEO_happy_1017",
+      "text": "It's eleven o'clock.",
+      "emotion": "happy",
+      "duration": 0.96,
+      "gen_time": 0.9422640800476074,
+      "rtf": 0.9815250833829244,
+      "status": "ok"
+    },
+    {
+      "label": "IEO_sad_1046",
+      "text": "It's eleven o'clock.",
+      "emotion": "sad",
+      "duration": 0.88,
+      "gen_time": 0.8681788444519043,
+      "rtf": 0.9865668686953458,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_angry_1058",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "angry",
+      "duration": 2.12,
+      "gen_time": 1.4010968208312988,
+      "rtf": 0.6608947268072164,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_happy_1074",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "happy",
+      "duration": 1.32,
+      "gen_time": 1.092346429824829,
+      "rtf": 0.827535174109719,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_neutral_1055",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "neutral",
+      "duration": 1.28,
+      "gen_time": 1.071864366531372,
+      "rtf": 0.8373940363526344,
+      "status": "ok"
+    },
+    {
+      "label": "DFA_angry_1065",
+      "text": "Don't forget a jacket.",
+      "emotion": "angry",
+      "duration": 1.12,
+      "gen_time": 1.0935876369476318,
+      "rtf": 0.976417532988957,
+      "status": "ok"
+    },
+    {
+      "label": "DFA_sad_1049",
+      "text": "Don't forget a jacket.",
+      "emotion": "sad",
+      "duration": 1.16,
+      "gen_time": 1.1155755519866943,
+      "rtf": 0.9617030620574952,
+      "status": "ok"
+    },
+    {
+      "label": "ITH_happy_1037",
+      "text": "I think I have a doctor's appointment.",
+      "emotion": "happy",
+      "duration": 2.92,
+      "gen_time": 1.8135030269622803,
+      "rtf": 0.6210626804665343,
+      "status": "ok"
+    },
+    {
+      "label": "ITH_neutral_1036",
+      "text": "I think I have a doctor's appointment.",
+      "emotion": "neutral",
+      "duration": 2.96,
+      "gen_time": 1.784857988357544,
+      "rtf": 0.6029925636343054,
+      "status": "ok"
+    },
+    {
+      "label": "TIE_angry_1008",
+      "text": "That is exactly what happened.",
+      "emotion": "angry",
+      "duration": 1.48,
+      "gen_time": 1.16713285446167,
+      "rtf": 0.7886032800416689,
+      "status": "ok"
+    },
+    {
+      "label": "TIE_sad_1082",
+      "text": "That is exactly what happened.",
+      "emotion": "sad",
+      "duration": 1.68,
+      "gen_time": 1.2384324073791504,
+      "rtf": 0.7371621472494944,
+      "status": "ok"
+    }
+  ],
+  "random_ref_fair": [
+    {
+      "label": "IEO_angry_1008",
+      "text": "It's eleven o'clock.",
+      "emotion": "angry",
+      "duration": 0.84,
+      "gen_time": 1.0349137783050537,
+      "rtf": 1.232040212267921,
+      "status": "ok"
+    },
+    {
+      "label": "IEO_happy_1017",
+      "text": "It's eleven o'clock.",
+      "emotion": "happy",
+      "duration": 0.88,
+      "gen_time": 0.9556772708892822,
+      "rtf": 1.0859968987378208,
+      "status": "ok"
+    },
+    {
+      "label": "IEO_sad_1046",
+      "text": "It's eleven o'clock.",
+      "emotion": "sad",
+      "duration": 0.92,
+      "gen_time": 1.2879788875579834,
+      "rtf": 1.3999770516934602,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_angry_1058",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "angry",
+      "duration": 1.4,
+      "gen_time": 1.2982549667358398,
+      "rtf": 0.9273249762398856,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_happy_1074",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "happy",
+      "duration": 1.32,
+      "gen_time": 1.1793630123138428,
+      "rtf": 0.8934568275104869,
+      "status": "ok"
+    },
+    {
+      "label": "IOM_neutral_1055",
+      "text": "I'm on my way to the meeting.",
+      "emotion": "neutral",
+      "duration": 1.28,
+      "gen_time": 1.0452816486358643,
+      "rtf": 0.816626287996769,
+      "status": "ok"
+    },
+    {
+      "label": "DFA_angry_1065",
+      "text": "Don't forget a jacket.",
+      "emotion": "angry",
+      "duration": 0.88,
+      "gen_time": 0.8756964206695557,
+      "rtf": 0.9951095689426769,
+      "status": "ok"
+    },
+    {
+      "label": "DFA_sad_1049",
+      "text": "Don't forget a jacket.",
+      "emotion": "sad",
+      "duration": 0.88,
+      "gen_time": 0.8607416152954102,
+      "rtf": 0.9781154719266024,
+      "status": "ok"
+    },
+    {
+      "label": "ITH_happy_1037",
+      "text": "I think I have a doctor's appointment.",
+      "emotion": "happy",
+      "duration": 1.96,
+      "gen_time": 1.429914951324463,
+      "rtf": 0.7295484445532974,
+      "status": "ok"
+    },
+    {
+      "label": "ITH_neutral_1036",
+      "text": "I think I have a doctor's appointment.",
+      "emotion": "neutral",
+      "duration": 1.76,
+      "gen_time": 1.2953917980194092,
+      "rtf": 0.7360180670564825,
+      "status": "ok"
+    },
+    {
+      "label": "TIE_angry_1008",
+      "text": "That is exactly what happened.",
+      "emotion": "angry",
+      "duration": 1.36,
+      "gen_time": 1.1612789630889893,
+      "rtf": 0.8538815905066097,
+      "status": "ok"
+    },
+    {
+      "label": "TIE_sad_1082",
+      "text": "That is exactly what happened.",
+      "emotion": "sad",
+      "duration": 1.6,
+      "gen_time": 1.169449806213379,
+      "rtf": 0.7309061288833618,
+      "status": "ok"
+    }
+  ]
+}

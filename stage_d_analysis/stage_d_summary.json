@@ -1,0 +1,80 @@
+{
+  "per_model_summary": {
+    "pretrained": {
+      "avg_wer": 0.3011904761904762,
+      "avg_speaker_sim": 0.6868962755052176,
+      "avg_duration_ratio": 0.5614948964014269,
+      "std_wer": 0.21443447217540107,
+      "std_speaker_sim": 0.11863486754386446,
+      "n_samples": 12
+    },
+    "selective": {
+      "avg_wer": 0.3428571428571428,
+      "avg_speaker_sim": 0.6915364425833236,
+      "avg_duration_ratio": 0.5797572453900054,
+      "std_wer": 0.24660391737255932,
+      "std_speaker_sim": 0.09088019450653013,
+      "n_samples": 12
+    },
+    "full_baseline": {
+      "avg_wer": 0.3011904761904762,
+      "avg_speaker_sim": 0.674977870876786,
+      "avg_duration_ratio": 0.5670894644814833,
+      "std_wer": 0.21443447217540107,
+      "std_speaker_sim": 0.12816967366255014,
+      "n_samples": 12
+    },
+    "random_mask": {
+      "avg_wer": 0.3011904761904762,
+      "avg_speaker_sim": 0.7002980423300352,
+      "avg_duration_ratio": 0.621515527340403,
+      "std_wer": 0.21443447217540107,
+      "std_speaker_sim": 0.09309226989512889,
+      "n_samples": 12
+    },
+    "random_ref_fair": {
+      "avg_wer": 0.3011904761904762,
+      "avg_speaker_sim": 0.6858351157617416,
+      "avg_duration_ratio": 0.4970343506852788,
+      "std_wer": 0.21443447217540107,
+      "std_speaker_sim": 0.08239052679748464,
+      "n_samples": 12
+    }
+  },
+  "speaker_sim_ranking": [
+    {
+      "model": "Random mask",
+      "avg_sim": 0.7002980423300352
+    },
+    {
+      "model": "Selective (delta)",
+      "avg_sim": 0.6915364425833236
+    },
+    {
+      "model": "Random ref (fair)",
+      "avg_sim": 0.6858351157617416
+    },
+    {
+      "model": "Full baseline",
+      "avg_sim": 0.674977870876786
+    }
+  ],
+  "wer_ranking": [
+    {
+      "model": "Full baseline",
+      "avg_wer": 0.3011904761904762
+    },
+    {
+      "model": "Random mask",
+      "avg_wer": 0.3011904761904762
+    },
+    {
+      "model": "Random ref (fair)",
+      "avg_wer": 0.3011904761904762
+    },
+    {
+      "model": "Selective (delta)",
+      "avg_wer": 0.3428571428571428
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "text": "It's eleven o'clock.",
+    "prompt_wav": "/data/zhenghao/repos/token-level/crema_data_1000/audios/1008_IEO_ANG_HI.wav",
+    "label": "IEO_angry_1008",
+    "sentence_code": "IEO",
+    "emotion": "angry",
+    "speaker_id": 1008
+  },
+  {
+    "text": "It's eleven o'clock.",
+    "prompt_wav": "/data/zhenghao/repos/token-level/crema_data_1000/audios/1017_IEO_HAP_MD.wav",
+    "label": "IEO_happy_1017",
+    "sentence_code": "IEO",
+    "emotion": "happy",
+    "speaker_id": 1017
+  },
+  {
+    "text": "It's eleven o'clock.",
+    "prompt_wav": "/data/zhenghao/repos/token-level/crema_data_1000/audios/1046_IEO_SAD_MD.wav",
+    "label": "IEO_sad_1046",
+    "sentence_code": "IEO",
+    "emotion": "sad",
+    "speaker_id": 1046
+  },
+  {
+    "text": "I'm on my way to the meeting.",
+    "prompt_wav": "/data/zhenghao/repos/token-level/crema_data_1000/audios/1058_IOM_ANG_XX.wav",
+    "label": "IOM_angry_1058",
+    "sentence_code": "IOM",
+    "emotion": "angry",
+    "speaker_id": 1058
+  },
+  {
+    "text": "I'm on my way to the meeting.",
+    "prompt_wav": "/data/zhenghao/repos/token-level/crema_data_1000/audios/1074_IOM_HAP_XX.wav",
+    "label": "IOM_happy_1074",
+    "sentence_code": "IOM",
+    "emotion": "happy",
+    "speaker_id": 1074
+  },
+  {
+    "text": "I'm on my way to the meeting.",
+    "prompt_wav": "/data/zhenghao/repos/token-level/crema_data_1000/audios/1055_IOM_NEU_XX.wav",
+    "label": "IOM_neutral_1055",
+    "sentence_code": "IOM",
+    "emotion": "neutral",
+    "speaker_id": 1055
+  },
+  {
+    "text": "Don't forget a jacket.",
+    "prompt_wav": "/data/zhenghao/repos/token-level/crema_data_1000/audios/1065_DFA_ANG_XX.wav",
+    "label": "DFA_angry_1065",
+    "sentence_code": "DFA",
+    "emotion": "angry",
+    "speaker_id": 1065
+  },
+  {
+    "text": "Don't forget a jacket.",
+    "prompt_wav": "/data/zhenghao/repos/token-level/crema_data_1000/audios/1049_DFA_SAD_XX.wav",
+    "label": "DFA_sad_1049",
+    "sentence_code": "DFA",
+    "emotion": "sad",
+    "speaker_id": 1049
+  },
+  {
+    "text": "I think I have a doctor's appointment.",
+    "prompt_wav": "/data/zhenghao/repos/token-level/crema_data_1000/audios/1037_ITH_HAP_XX.wav",
+    "label": "ITH_happy_1037",
+    "sentence_code": "ITH",
+    "emotion": "happy",
+    "speaker_id": 1037
+  },
+  {
+    "text": "I think I have a doctor's appointment.",
+    "prompt_wav": "/data/zhenghao/repos/token-level/crema_data_1000/audios/1036_ITH_NEU_XX.wav",
+    "label": "ITH_neutral_1036",
+    "sentence_code": "ITH",
+    "emotion": "neutral",
+    "speaker_id": 1036
+  },
+  {
+    "text": "That is exactly what happened.",
+    "prompt_wav": "/data/zhenghao/repos/token-level/crema_data_1000/audios/1008_TIE_ANG_XX.wav",
+    "label": "TIE_angry_1008",
+    "sentence_code": "TIE",
+    "emotion": "angry",
+    "speaker_id": 1008
+  },
+  {
+    "text": "That is exactly what happened.",
+    "prompt_wav": "/data/zhenghao/repos/token-level/crema_data_1000/audios/1082_TIE_SAD_XX.wav",
+    "label": "TIE_sad_1082",
+    "sentence_code": "TIE",
+    "emotion": "sad",
+    "speaker_id": 1082
+  }
+]

@@ -22,16 +22,24 @@ Thumbs.db
 
 # Large data & output directories (keep locally, not in repo)
 crema_data_1000
+crema_data_full/
 crema_outputs_1000
 crema_outputs_1000_tight_std15
+crema_outputs_full/
 data
 phase0_outputs
 phase1_outputs/
+phase1_outputs_30h/
 phase2_outputs/
 phase3_outputs/
 phase1_random_ref_outputs/
 phase2_random_ref_outputs/
 pretrained_models/
+multi_dataset_30h/
+multi_dataset_30h_log.txt
+
+# Generated audio samples
+stage_d_analysis/generated_audio/
 
 # Model files
 *.pt
